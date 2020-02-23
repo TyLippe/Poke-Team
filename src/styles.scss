@@ -1,0 +1,40 @@
+@import 'variables.scss';
+
+body {
+    margin: 0;
+    background-color: red;
+    font-family: 'Roboto', sans-serif;
+    color: $white;
+  }
+
+.pokeDiv {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.buttonDiv {
+    display: flex;
+    justify-content: center;
+    .loadButton {
+        margin: 10px;
+        font-size: 1.4rem;
+    }
+}
+
+.pokeContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px red solid;
+    border-radius: 10px;
+    background-color: $dark;
+    width: 200px;
+    height: 200px;
+    margin: 10px;
+    img {
+        width: 50%;
+    }
+
+}

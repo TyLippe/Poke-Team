@@ -50,6 +50,14 @@ body {
     img {
         width: 60%;
     }
+    .nameLink {
+        text-decoration: none;
+        color: white;
+        margin-bottom: 14px;
+        &:hover {
+            color: $dark;
+        }
+    }
     .switchButtons {
         button {
             margin-right: 2px;

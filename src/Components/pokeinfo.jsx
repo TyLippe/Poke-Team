@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 import '../styles.scss'
 
 function PokeInfo(props) {
@@ -7,7 +8,7 @@ function PokeInfo(props) {
     const [pokeimg, setPokeimg] = useState([])
     const [imgURL, setImgURL] = useState()
     const [shiny, setShiny] = useState(false)
-    const [gender, setGender] = useState(false)
+    const [gender, setGender] = useState('male')
 
     useEffect(() => {
         axios
@@ -24,23 +25,35 @@ function PokeInfo(props) {
 
     const switchShiny = e => {
         e.preventDefault()
-        if(shiny === false) {
-            setImgURL(pokeimg.front_default)
-            setShiny(true)
-        } else {
+        if(gender === 'male' && shiny === false) {
             setImgURL(pokeimg.front_shiny)
+            setShiny(true)
+        } else if (gender === 'male' && shiny === true) {
+            setImgURL(pokeimg.front_default)
+            setShiny(false)
+        } else if (gender === 'female' && shiny === false) {
+            setImgURL(pokeimg.front_female_shiny)
+            setShiny(true)
+        } else if (gender === 'female' && shiny === true) {
+            setImgURL(pokeimg.front_female)
             setShiny(false)
         }
     }
 
     const switchGender = e => {
         e.preventDefault()
-        if(gender === false) {
-            setImgURL(pokeimg.front_default)
-            setGender(true)
-        } else {
+        if(gender === 'male' && shiny === false) {
             setImgURL(pokeimg.front_female)
-            setGender(false)
+            setGender('female')
+        } else if (gender === 'male' && shiny === true) {
+            setImgURL(pokeimg.front_shiny_female)
+            setGender('female')
+        } else if (gender === 'female' && shiny === false) {
+            setImgURL(pokeimg.front_default)
+            setGender('male')
+        } else if (gender === 'female' && shiny === true) {
+            setImgURL(pokeimg.front_female_shiny)
+            setGender('male')
         }
     }
 
@@ -54,7 +67,7 @@ function PokeInfo(props) {
             <p>{data.id}</p>
             </div>
             <img src={imgURL} />
-            <p>{capitalPoke}</p>
+            <Link to={`/poke/${data.id}`} className='nameLink'>{capitalPoke}</Link>
             <div className='switchButtons'>
             {pokeimg.front_shiny !== null &&
                 <button onClick={switchShiny}>Shiny</button>

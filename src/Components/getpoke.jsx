@@ -8,6 +8,10 @@ function GetPokemon() {
     const [amount, setAmount] = useState(20)
 
     useEffect(() => {
+        loadData()
+    }, []);
+
+    const loadData = () => {
         axios  
             .get(`https://pokeapi.co/api/v2/pokemon/?limit=${amount}&offset=0`)
             .then(res => {
@@ -16,17 +20,12 @@ function GetPokemon() {
             .catch(err => {
                 console.log(err)
             })
-    }, []);
-    
+    }
+
     const loadMore = () => {
         if(amount <= 60) {
-            const total = amount + 20
-            setAmount(total)
-            axios
-                .get(`https://pokeapi.co/api/v2/pokemon/?limit=${amount}&offset=0`)
-                .then(res => {
-                    setPoke(res.data.results)
-                })
+            setAmount(amount + 20)
+            loadData()
         }
         else {
             alert('No more to load!')
@@ -43,7 +42,7 @@ function GetPokemon() {
                     </div>
                 )
             })}
-            <button onClick={loadMore}>Load More!</button>
+            <button onClick={() => {loadMore()}}>Load More!</button>
         </div>
     )
 }

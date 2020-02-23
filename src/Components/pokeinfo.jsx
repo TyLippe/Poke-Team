@@ -46,8 +46,13 @@ function PokeInfo(props) {
 
     const capitalPoke = props.name.charAt(0).toUpperCase() + props.name.slice(1)
 
+    console.log(data)
+
     return(
         <div className='pokeContainer'>
+            <div className='pokeNum'> 
+            <p>{data.id}</p>
+            </div>
             <img src={imgURL} />
             <p>{capitalPoke}</p>
             <div className='switchButtons'>

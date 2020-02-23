@@ -17,7 +17,6 @@ function GetPokemon() {
             .get(`https://pokeapi.co/api/v2/pokemon/?limit=${amount}&offset=0`)
             .then(res => {
                 setPoke(res.data.results)
-                console.log(res.data.results)
             })
             .catch(err => {
                 console.log(err)

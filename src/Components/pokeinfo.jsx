@@ -10,18 +10,19 @@ function PokeInfo(props) {
     const [shiny, setShiny] = useState(false)
     const [gender, setGender] = useState('male')
 
-    useEffect(() => {
-        axios
-            .get(props.url)
-            .then(res => {
-                setData(res.data)
-                setPokeimg(res.data.sprites)
-                setImgURL(res.data.sprites.front_default)
-            })
-            .catch(err => {
-                console.log(err)
-            })
-    }, [])
+    // useEffect(() => {
+    //     axios
+    //         .get(props.url)
+    //         .then(res => {
+    //             setData(res.data)
+    //             setPokeimg(res.data.sprites)
+    //             setImgURL(res.data.sprites.front_default)
+    //             console.log(res.data.game_indices)
+    //         })
+    //         .catch(err => {
+    //             console.log(err)
+    //         })
+    // }, [])
 
     const switchShiny = e => {
         e.preventDefault()
@@ -58,8 +59,6 @@ function PokeInfo(props) {
     }
 
     const capitalPoke = props.name.charAt(0).toUpperCase() + props.name.slice(1)
-
-    console.log(data)
 
     return(
         <div className='pokeContainer'>

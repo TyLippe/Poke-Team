@@ -1,55 +1,41 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import { getPoke } from '../actions'
+import { connect } from 'react-redux'
 import PokeInfo from './pokeinfo'
 import '../styles.scss'
 
 
-function GetPokemon() {
+function GetPokemon(props) {
     const [poke, setPoke] = useState([])
-    const [amount, setAmount] = useState(60)
 
     useEffect(() => {
-        loadData()
+        props.getPoke()
     }, []);
-
-    const loadData = () => {
-        axios  
-            .get(`https://pokeapi.co/api/v2/pokemon/?limit=${amount}&offset=0`)
-            .then(res => {
-                setPoke(res.data.results)
-            })
-            .catch(err => {
-                console.log(err)
-            })
-    }
-
-    const loadMore = () => {
-        if(amount <= 964) {
-            setAmount(amount + 60)
-            console.log(amount)
-            loadData()
-        }
-        else {
-            alert('No more to load!')
-        }
-    }
 
     return(
         <div>
             <div className='pokeDiv'>
-            {poke.map(pokemon => {
+            {/* {poke.map(pokemon => {
                 return(
                     <div>
                         <PokeInfo name={pokemon.name} url={pokemon.url} />
                     </div>
                 )
-            })}
+            })} */}
             </div>
             <div className='buttonDiv'>
-            <button onClick={loadMore} className='loadButton'>Load More!</button>
+            {/* <button onClick={loadMore} className='loadButton'>Load More!</button> */}
             </div>
         </div>
     )
 }
 
-export default GetPokemon;
+const mapStateToProps = state => {
+    return {
+    }
+}
+
+export default connect(
+    mapStateToProps,
+    { getPoke }
+)(GetPokemon);

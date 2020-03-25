@@ -7,7 +7,8 @@ import {
 } from '../actions'
 
 const initialState = {
-    poke: [],
+    pokeData: [],
+    pokeTeam: [],
     fetchingPoke: false,
     addingPoke: false,
     pokeShowing: false,
@@ -29,6 +30,7 @@ export function pokeReducer(state = initialState, action) {
         case SUCCESS_POKE:
             return{
                 ...state,
+                pokeData: [action.payload],
                 fetchingPoke: false,
                 addingPoke: false,
                 pokeShowing: true,
@@ -47,7 +49,7 @@ export function pokeReducer(state = initialState, action) {
         case ADD_POKE_TEAM:
             return{
                 ...state,
-                poke: [...state.poke, action.payload],
+                pokeTeam: [...state.poke, action.payload],
                 fetchingPoke: false,
                 addingPoke: true,
                 pokeShowing: false,
@@ -57,7 +59,7 @@ export function pokeReducer(state = initialState, action) {
         case DELETE_POKE_TEAM:
             return{
                 ...state,
-                poke: state.poke.filter(poke => poke.id !== action.payload),
+                pokeTeam: state.poke.filter(poke => poke.id !== action.payload),
                 fetchingPoke: false,
                 addingPoke: false,
                 pokeShowing: false,

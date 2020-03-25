@@ -20,9 +20,9 @@ export function getPoke() {
     return dispatch => {
         dispatch({ type: FETCH_POKE })
             axios
-                .get(`https://pokeapi.co/api/v2/pokemon/?limit=151&offset=0`)
+                .get(`https://pokeapi.co/api/v2/pokemon/?limit=40&offset=0`)
                 .then(res => {
-                    dispatch({ type: SUCCESS_POKE, payload: res.data })
+                    dispatch({ type: SUCCESS_POKE, payload: res.data.results })
                 })
                 .catch(err => dispatch({ type: FAILED_POKE, payload: err }))
     }

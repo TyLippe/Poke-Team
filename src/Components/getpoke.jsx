@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { getPoke } from '../actions'
 import { connect } from 'react-redux'
 import PokeInfo from './pokeinfo'
@@ -6,22 +6,22 @@ import '../styles.scss'
 
 
 function GetPokemon(props) {
-    const [poke, setPoke] = useState([])
-
     useEffect(() => {
         props.getPoke()
     }, []);
 
+    console.log(props.pokemon)
+    
     return(
         <div>
             <div className='pokeDiv'>
-            {/* {poke.map(pokemon => {
+            {props.pokemon && props.pokemon.map(pokemon => {
                 return(
                     <div>
                         <PokeInfo name={pokemon.name} url={pokemon.url} />
                     </div>
                 )
-            })} */}
+            })}
             </div>
             <div className='buttonDiv'>
             {/* <button onClick={loadMore} className='loadButton'>Load More!</button> */}
@@ -32,6 +32,7 @@ function GetPokemon(props) {
 
 const mapStateToProps = state => {
     return {
+        pokemon: state.poke.pokeData[0]
     }
 }
 

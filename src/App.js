@@ -18,7 +18,7 @@ function App() {
       <div className="App">
         <Route path='/' component={NavBar} />
         <Route exact path='/' component={Poke} />
-        <Route path='/poke/2' component={PokeDetail} />
+        <Route path='/poke/:id' component={PokeDetail} />
       </div>  
     </Provider>
     </Router>

@@ -10,19 +10,18 @@ function PokeInfo(props) {
     const [shiny, setShiny] = useState(false)
     const [gender, setGender] = useState('male')
 
-    // useEffect(() => {
-    //     axios
-    //         .get(props.url)
-    //         .then(res => {
-    //             setData(res.data)
-    //             setPokeimg(res.data.sprites)
-    //             setImgURL(res.data.sprites.front_default)
-    //             console.log(res.data.game_indices)
-    //         })
-    //         .catch(err => {
-    //             console.log(err)
-    //         })
-    // }, [])
+    useEffect(() => {
+        axios
+            .get(props.url)
+            .then(res => {
+                setData(res.data)
+                setPokeimg(res.data.sprites)
+                setImgURL(res.data.sprites.front_default)
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }, [])
 
     const switchShiny = e => {
         e.preventDefault()
@@ -63,17 +62,17 @@ function PokeInfo(props) {
     return(
         <div className='pokeContainer'>
             <div className='pokeNum'> 
-            <p>{data.id}</p>
+                <p>{data.id}</p>
             </div>
-            <img src={imgURL} />
-            <Link to={`/poke/${data.id}`} className='nameLink'>{capitalPoke}</Link>
+                <img src={imgURL} />
+                <Link to={`/poke/${data.id}`} className='nameLink'>{capitalPoke}</Link>
             <div className='switchButtons'>
-            {pokeimg.front_shiny !== null &&
-                <button onClick={switchShiny}>Shiny</button>
-            }
-            {pokeimg.front_female !== null &&
-                <button onClick={switchGender}>Gender</button>
-            }
+                {pokeimg.front_shiny !== null &&
+                    <button onClick={switchShiny}>Shiny</button>
+                }
+                {pokeimg.front_female !== null &&
+                    <button onClick={switchGender}>Gender</button>
+                }
             </div>
         </div>
     )

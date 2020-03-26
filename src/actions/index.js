@@ -16,11 +16,11 @@ export const DELETE_POKE_TEAM = 'DELETE_POKE_TEAM';
 
 
 
-export function getPoke() {
+export function getPoke(amount) {
     return dispatch => {
         dispatch({ type: FETCH_POKE })
             axios
-                .get(`https://pokeapi.co/api/v2/pokemon/?limit=40&offset=0`)
+                .get(`https://pokeapi.co/api/v2/pokemon/?limit=${amount}`)
                 .then(res => {
                     dispatch({ type: SUCCESS_POKE, payload: res.data.results })
                 })

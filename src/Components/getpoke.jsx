@@ -1,17 +1,23 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { getPoke } from '../actions'
 import { connect } from 'react-redux'
 import PokeInfo from './pokeinfo'
+import PokeDetail from './pokedetail';
 import '../styles.scss'
 
 
 function GetPokemon(props) {
+    const [amount, setAmount] = useState(20)
+
     useEffect(() => {
-        props.getPoke()
+        props.getPoke(amount)
     }, []);
 
-    console.log(props.pokemon)
-    
+    const loadMore = () => {
+        setAmount(amount + 20)
+        props.getPoke(amount + 20)
+    }
+
     return(
         <div>
             <div className='pokeDiv'>
@@ -24,7 +30,7 @@ function GetPokemon(props) {
             })}
             </div>
             <div className='buttonDiv'>
-            {/* <button onClick={loadMore} className='loadButton'>Load More!</button> */}
+            <button onClick={loadMore} className='loadButton'>Load More!</button>
             </div>
         </div>
     )

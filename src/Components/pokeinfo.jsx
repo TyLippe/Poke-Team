@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { addPoke } from '../actions'
 import '../styles.scss'
 
 function PokeInfo(props) {
@@ -9,6 +11,12 @@ function PokeInfo(props) {
     const [imgURL, setImgURL] = useState()
     const [shiny, setShiny] = useState(false)
     const [gender, setGender] = useState('male')
+    const [poke, setPoke] = useState({
+        sprite: '',
+        poke_num: '',
+        poke_name: '',
+        poke_type: []
+    })
 
     useEffect(() => {
         axios
@@ -57,6 +65,20 @@ function PokeInfo(props) {
         }
     }
 
+    const handlePoke = e => {
+        setPoke({
+            ...poke,
+            sprite: pokeimg.front_default,
+            poke_num: data.id,
+            poke_name: capitalPoke,
+            poke_type: data.types
+        })
+    }
+
+    const addTeam = e => {
+        props.addPoke(2, poke)
+    }
+
     const capitalPoke = props.name.charAt(0).toUpperCase() + props.name.slice(1)
 
     return(
@@ -73,9 +95,20 @@ function PokeInfo(props) {
                 {pokeimg.front_female !== null &&
                     <button onClick={switchGender}>Gender</button>
                 }
+                <button onClick={handlePoke}>+</button>
+                <button onClick={addTeam}>+</button>
             </div>
         </div>
     )
 }
 
-export default PokeInfo;
+const mapStateToProps = state => {
+    return {
+        poke: state.capitalPoke
+    }
+}
+
+export default connect(
+    mapStateToProps,
+    { addPoke }
+)(PokeInfo);

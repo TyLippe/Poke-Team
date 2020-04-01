@@ -36,14 +36,14 @@ function PokeDetail(props) {
                     </div>
                 )
             })}
-            <h2>Moves:</h2>
+            {/* <h2>Moves:</h2>
             {moves && moves.map(move => {
                 return(
                     <div>
                         <p>{move.move.name}</p>
                     </div>
                 )
-            })}
+            })} */}
         </div>
     )
 }

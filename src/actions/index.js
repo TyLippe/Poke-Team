@@ -32,7 +32,7 @@ export function deletePoke(id) {
     return dispatch => {
         dispatch({ type: DELETE_POKE_TEAM })
             axios
-                .delete(`localhost:5000/api/team/${id}`)
+                .delete(`http://localhost:5000/api/team/${id}`)
                 .then(res => {
                     dispatch({ type: SUCCESS_POKE, payload: res.data })
                 })
@@ -44,7 +44,7 @@ export function addPoke(id, poke) {
     return dispatch => {
         dispatch({ type: ADD_POKE_TEAM})
             axios
-                .post(`localhost:5000/api/user/${id}/addpoke`, poke)
+                .post(`http://localhost:5000/api/user/${id}/addpoke`, poke)
                 .then(res => {
                     dispatch({ type: SUCCESS_POKE, payload: res.data })
                 })
@@ -56,7 +56,7 @@ export function login(creds) {
     return dispatch => {
         dispatch({ type: FETCH_USER })
             axios
-                .post(`localhost:5000/api/user/login`, creds)
+                .post(`http://localhost:5000/api/user/login`, creds)
                 .then(res => {
                     localStorage.setItem('token', res.data.token)
                     localStorage.setItem('userId', res.data.id)
@@ -70,7 +70,7 @@ export function signup(creds) {
     return dispatch => {
         dispatch({ type: CREATE_USER })
             axios
-                .post(`localhost:5000/api/user/register`, creds)
+                .post(`http://localhost:5000/api/user/register`, creds)
                 .then(res => {
                     localStorage.setItem('token', res.data.token)
                     dispatch({ type: SUCCESS_CREATE })

@@ -49,7 +49,7 @@ export function pokeReducer(state = initialState, action) {
         case ADD_POKE_TEAM:
             return{
                 ...state,
-                pokeTeam: [...state.poke, action.payload],
+                pokeTeam: [action.payload],
                 fetchingPoke: false,
                 addingPoke: true,
                 pokeShowing: false,

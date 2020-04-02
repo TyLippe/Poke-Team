@@ -3,6 +3,7 @@ import {
     SUCCESS_POKE,
     FAILED_POKE,
     ADD_POKE_TEAM,
+    FAILED_ADD_POKE,
     DELETE_POKE_TEAM
 } from '../actions'
 
@@ -55,6 +56,15 @@ export function pokeReducer(state = initialState, action) {
                 pokeShowing: false,
                 deletingPoke: false,
                 err: null
+            }
+        case FAILED_ADD_POKE:
+            return{
+                ...state,
+                fetchingPoke: false,
+                addingPoke: false,
+                pokeShowing: false,
+                deletingPoke: false,
+                err: [action.payload.response.data.message]
             }
         case DELETE_POKE_TEAM:
             return{

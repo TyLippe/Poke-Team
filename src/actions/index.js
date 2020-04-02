@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { axiosWithAuth } from '../auth/axiosWithAuth';
 
 export const FETCH_USER = 'FETCH_USER'
 export const SUCCESS_USER = 'SUCCESS_USER'
@@ -12,6 +13,7 @@ export const FETCH_POKE = 'FETCH_POKE';
 export const SUCCESS_POKE = 'SUCCESS_POKE';
 export const FAILED_POKE = 'FAILED_POKE';
 export const ADD_POKE_TEAM = 'ADD_POKE_TEAM';
+export const FAILED_ADD_POKE = 'FAILED_ADD_POKE';
 export const DELETE_POKE_TEAM = 'DELETE_POKE_TEAM';
 
 
@@ -19,7 +21,7 @@ export const DELETE_POKE_TEAM = 'DELETE_POKE_TEAM';
 export function getPoke(amount) {
     return dispatch => {
         dispatch({ type: FETCH_POKE })
-            axios
+            axiosWithAuth()
                 .get(`https://pokeapi.co/api/v2/pokemon/?limit=${amount}`)
                 .then(res => {
                     dispatch({ type: SUCCESS_POKE, payload: res.data.results })
@@ -31,7 +33,7 @@ export function getPoke(amount) {
 export function deletePoke(id) {
     return dispatch => {
         dispatch({ type: DELETE_POKE_TEAM })
-            axios
+            axiosWithAuth() 
                 .delete(`http://localhost:5000/api/team/${id}`)
                 .then(res => {
                     dispatch({ type: SUCCESS_POKE, payload: res.data })
@@ -43,12 +45,12 @@ export function deletePoke(id) {
 export function addPoke(id, poke) {
     return dispatch => {
         dispatch({ type: ADD_POKE_TEAM})
-            axios
+            axiosWithAuth()
                 .post(`http://localhost:5000/api/user/${id}/addpoke`, poke)
                 .then(res => {
                     dispatch({ type: SUCCESS_POKE, payload: res.data })
                 })
-                .catch(err => dispatch({ type: FAILED_POKE, payload: err }))
+                .catch(err => dispatch({ type: FAILED_ADD_POKE, payload: err }))
     }
 }
 
@@ -60,6 +62,8 @@ export function login(creds) {
                 .then(res => {
                     localStorage.setItem('token', res.data.token)
                     localStorage.setItem('userId', res.data.id)
+                    localStorage.setItem('username', res.data.username)
+                    console.log(res.data)
                     dispatch({ type: SUCCESS_USER })
                 })
                 .catch(err => dispatch({ type: FAILED_USER, payload: err }))

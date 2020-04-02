@@ -18,7 +18,16 @@ function Register(props) {
     const handleSubmit = e => {
         e.preventDefault()
         props.signup(creds)
-        console.log(creds)
+        setTimeout(() => signupChecker(), 1000)
+    }
+
+    const signupChecker = () => {
+        console.log(props.creatingUser)
+        if(props.loggedIn){
+            props.history.push('/home')
+        } else {
+            alert('SignUp Failed')
+        }
     }
 
     return(
@@ -48,7 +57,9 @@ function Register(props) {
 
 const mapStateToProps = state => {
     return {
-        creds: state.creds
+        creds: state.creds,
+        loggedIn: state.signup.loggedIn,
+        creatingUser: state.signup
     }
 }
 

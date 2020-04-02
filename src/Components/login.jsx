@@ -18,7 +18,15 @@ function Login(props) {
     const handleSubmit = e => {
         e.preventDefault()
         props.login(creds)
-        console.log(creds)
+        setTimeout(() => loginChecker(), 1000)
+    }
+
+    const loginChecker = () => {
+        if(props.isLoggedIn){
+            props.history.push('/home')
+        } else {
+            alert('Login Failed')
+        }
     }
 
     return(
@@ -48,7 +56,8 @@ function Login(props) {
 
 const mapStateToProps = state => {
     return {
-        creds: state.creds
+        creds: state.creds,
+        isLoggedIn: state.login.isLoggedIn
     }
 }
 

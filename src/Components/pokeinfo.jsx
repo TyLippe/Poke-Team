@@ -14,8 +14,7 @@ function PokeInfo(props) {
     const [poke, setPoke] = useState({
         sprite: '',
         poke_num: '',
-        poke_name: '',
-        poke_type: []
+        poke_name: ''
     })
 
     useEffect(() => {
@@ -65,18 +64,25 @@ function PokeInfo(props) {
         }
     }
 
-    const handlePoke = e => {
+    const handlePoke = () => {
         setPoke({
             ...poke,
             sprite: pokeimg.front_default,
             poke_num: data.id,
-            poke_name: capitalPoke,
-            poke_type: data.types
+            poke_name: capitalPoke
         })
     }
 
-    const addTeam = e => {
-        props.addPoke(2, poke)
+    const addTeam = () => {
+        props.addPoke(localStorage.userId, poke)
+        teamCheck()       
+    }
+    
+    const teamCheck = () => {
+        console.log(props.err)
+        if(props.err !== null){
+            alert(props.err)
+        }
     }
 
     const capitalPoke = props.name.charAt(0).toUpperCase() + props.name.slice(1)
@@ -104,7 +110,8 @@ function PokeInfo(props) {
 
 const mapStateToProps = state => {
     return {
-        poke: state.capitalPoke
+        poke: state.capitalPoke,
+        err: state.poke.err
     }
 }
 

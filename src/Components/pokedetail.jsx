@@ -7,7 +7,7 @@ function PokeDetail(props) {
     const [type, setType] = useState([])
     const [sprite, setSprite] = useState()
     const [moves, setMoves] = useState([])
-    let id = props.match.params.id
+    const id = props.match.params.id
 
     useEffect(() => {
         axios

@@ -29,9 +29,12 @@ function Login(props) {
         }
     }
 
+    const register = () => {
+        window.location.href = '/register';
+    }
+
     return(
         <div className='registerDiv'>
-            <h1>Poké-Team Builder</h1>
             <h1>Log In</h1>
             <form onSubmit={handleSubmit}>
                 <input
@@ -50,6 +53,7 @@ function Login(props) {
                 />
                 <input type="submit" value="Submit" />
             </form>
+            <button onClick={register}>Register</button>
         </div>
     )
 }

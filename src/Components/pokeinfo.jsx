@@ -69,7 +69,7 @@ function PokeInfo(props) {
             ...poke,
             sprite: pokeimg.front_default,
             poke_num: data.id,
-            poke_name: capitalPoke
+            poke_name: props.name
         })
     }
 
@@ -85,15 +85,13 @@ function PokeInfo(props) {
         }
     }
 
-    const capitalPoke = props.name.charAt(0).toUpperCase() + props.name.slice(1)
-
     return(
         <div className='pokeContainer'>
             <div className='pokeNum'> 
                 <p>{data.id}</p>
             </div>
                 <img src={imgURL} />
-                <Link to={`/poke/${data.id}`} className='nameLink'>{capitalPoke}</Link>
+                <Link to={`/poke/${data.id}`} className='nameLink'>{props.name}</Link>
             <div className='switchButtons'>
                 {pokeimg.front_shiny !== null &&
                     <button onClick={switchShiny}>Shiny</button>

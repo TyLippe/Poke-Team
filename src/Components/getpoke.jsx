@@ -23,7 +23,7 @@ function GetPokemon(props) {
             {props.pokemon && props.pokemon.map(pokemon => {
                 return(
                     <div>
-                        <PokeInfo name={pokemon.name} url={pokemon.url} />
+                        <PokeInfo name={pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)} url={pokemon.url} />
                     </div>
                 )
             })}

@@ -1,6 +1,8 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 function NavBar() {
+    const username = localStorage.username
     
     const logout = () => {
         localStorage.clear();
@@ -9,9 +11,9 @@ function NavBar() {
 
     return(
         <div className='navDiv'>
-            <h1>Poké-Team Builder</h1>
-            <p>{localStorage.username}</p>
-            <button onClick={logout}>Log Out</button>
+            <Link to={`/home`}>Poké-Team Builder</Link>
+            <Link to={`/team/${username}`}>{username}</Link>
+            {username && <button onClick={logout}>Log Out</button>}
         </div>
     )
 }

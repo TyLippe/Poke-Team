@@ -6,18 +6,18 @@ function PokeDetail(props) {
     const [name, setName] = useState()
     const [type, setType] = useState([])
     const [sprite, setSprite] = useState()
-    const [moves, setMoves] = useState([])
+    const [game, setGame] = useState([])
     const id = props.match.params.id
 
     useEffect(() => {
         axios
             .get(`https://pokeapi.co/api/v2/pokemon/${id}`)
             .then(res => {
-                console.log(res.data)
+                // console.log(res.data)
                 setName(res.data.name)
                 setType(res.data.types)
                 setSprite(res.data.sprites.front_default)
-                setMoves(res.data.moves)
+                setGame(res.data.game_indices)
             })
             .catch(err => {
                 console.log(err)
@@ -32,18 +32,18 @@ function PokeDetail(props) {
             {type && type.map(types => {
                 return(
                     <div>
-                        <p>{types.type.name.charAt(0).toUpperCase() + types.type.name.slice(1)}</p>
+                        <li>{types.type.name.charAt(0).toUpperCase() + types.type.name.slice(1)}</li>
                     </div>
                 )
             })}
-            {/* <h2>Moves:</h2>
-            {moves && moves.map(move => {
+            <h2>Appears in:</h2>
+            {game && game.reverse().map(games => {
                 return(
                     <div>
-                        <p>{move.move.name}</p>
+                        <li>{games.version.name.charAt(0).toUpperCase() + games.version.name.slice(1)}</li>
                     </div>
                 )
-            })} */}
+            })}
         </div>
     )
 }

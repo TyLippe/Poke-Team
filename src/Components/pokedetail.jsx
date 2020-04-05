@@ -13,7 +13,6 @@ function PokeDetail(props) {
         axios
             .get(`https://pokeapi.co/api/v2/pokemon/${id}`)
             .then(res => {
-                // console.log(res.data)
                 setName(res.data.name)
                 setType(res.data.types)
                 setSprite(res.data.sprites.front_default)

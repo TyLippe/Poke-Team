@@ -22,7 +22,7 @@ function Login(props) {
     }
 
     const loginChecker = () => {
-        if(props.isLoggedIn){
+        if(!props.isLoggedIn){
             props.history.push('/home')
         } else {
             alert('Login Failed')

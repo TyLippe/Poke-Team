@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { login } from '../actions'
 
@@ -18,15 +19,6 @@ function Login(props) {
     const handleSubmit = e => {
         e.preventDefault()
         props.login(creds)
-        setTimeout(() => loginChecker(), 1000)
-    }
-
-    const loginChecker = () => {
-        if(!props.isLoggedIn){
-            props.history.push('/home')
-        } else {
-            alert('Login Failed')
-        }
     }
 
     const register = () => {
@@ -35,6 +27,7 @@ function Login(props) {
 
     return(
         <div className='registerDiv'>
+            {props.isLoggedIn && <Redirect to='/home' />}
             <h1>Log In</h1>
             <form onSubmit={handleSubmit}>
                 <input

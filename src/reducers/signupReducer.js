@@ -6,7 +6,7 @@ import {
 
 const initialState = {
     creatingUser: false,
-    loggedIn: false,
+    created: false,
     err: null
 }
 
@@ -16,21 +16,21 @@ export function signupReducer(state = initialState, action) {
             return{
                 ...state,               
                 creatingUser: true,
-                loggedIn: false,
+                created: false,
                 err: null
             }
         case SUCCESS_CREATE:
             return{
                 ...state,
                 creatingUser: false,
-                loggedIn: true,
+                created: true,
                 err: null
             }
         case FAILED_CREATE:
             return{
                 ...state,
                 creatingUser: false,
-                loggedIn: false,
+                created: false,
                 err: 'User not created'
             }
         default:

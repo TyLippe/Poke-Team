@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { signup } from '../actions'
 
@@ -18,15 +19,6 @@ function Register(props) {
     const handleSubmit = e => {
         e.preventDefault()
         props.signup(creds)
-        setTimeout(() => signupChecker(), 2000)
-    }
-
-    const signupChecker = () => {
-        if(!props.loggedIn){
-            props.history.push('/login')
-        } else {
-            alert('SignUp Failed')
-        }
     }
 
     const login = () => {
@@ -35,21 +27,22 @@ function Register(props) {
 
     return(
         <div className='registerDiv'>
+            {props.created && <Redirect to='/login' />}
             <h1>Register</h1>
             <form onSubmit={handleSubmit}>
                 <input
-                type="text"
-                name="username"
-                placeholder="Username"
-                value={creds.username}
-                onChange={handleChange}
+                    type="text"
+                    name="username"
+                    placeholder="Username"
+                    value={creds.username}
+                    onChange={handleChange}
                 />
                 <input
-                type="password"
-                name="password"
-                placeholder="Password"
-                value={creds.password}
-                onChange={handleChange}
+                    type="password"
+                    name="password"
+                    placeholder="Password"
+                    value={creds.password}
+                    onChange={handleChange}
                 />
                 <input type="submit" value="Submit" />
             </form>
@@ -62,7 +55,7 @@ const mapStateToProps = state => {
     console.log(state)
     return {
         creds: state.creds,
-        loggedIn: state.signup.loggedIn
+        created: state.signup.created
     }
 }
 

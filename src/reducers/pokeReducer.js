@@ -2,18 +2,14 @@ import {
     FETCH_POKE,
     SUCCESS_POKE,
     FAILED_POKE,
-    ADD_POKE_TEAM,
-    FAILED_ADD_POKE,
-    DELETE_POKE_TEAM
+    FETCH_ID_POKE,
+    SUCCESS_ID_POKE,
+    FAILED_ID_POKE
 } from '../actions'
 
 const initialState = {
     pokeData: [],
-    pokeTeam: [],
     fetchingPoke: false,
-    addingPoke: false,
-    pokeShowing: false,
-    deletingPoke: false,
     err: null
 }
 
@@ -22,10 +18,8 @@ export function pokeReducer(state = initialState, action) {
         case FETCH_POKE:
             return{
                 ...state,
+                pokeData: [],
                 fetchingPoke: true,
-                addingPoke: false,
-                pokeShowing: false,
-                deletingPoke: false,
                 err: null
             }
         case SUCCESS_POKE:
@@ -33,48 +27,35 @@ export function pokeReducer(state = initialState, action) {
                 ...state,
                 pokeData: [action.payload],
                 fetchingPoke: false,
-                addingPoke: false,
-                pokeShowing: true,
-                deletingPoke: false,
                 err: null
             }
         case FAILED_POKE:
             return{
                 ...state,
+                pokeData: [],
                 fetchingPoke: false,
-                addingPoke: false,
-                pokeShowing: false,
-                deletingPoke: false,
-                err: 'Could not fetch Pokemon'
+                err: "Unable to fetch Pokemon"
             }
-        case ADD_POKE_TEAM:
+        case FETCH_ID_POKE:
             return{
                 ...state,
-                pokeTeam: [action.payload],
-                fetchingPoke: false,
-                addingPoke: true,
-                pokeShowing: false,
-                deletingPoke: false,
+                pokeData: [],
+                fetchingPoke: true,
                 err: null
             }
-        case FAILED_ADD_POKE:
+        case SUCCESS_ID_POKE:
             return{
                 ...state,
+                pokeData: [action.payload],
                 fetchingPoke: false,
-                addingPoke: false,
-                pokeShowing: false,
-                deletingPoke: false,
-                err: [action.payload.response.data.message]
-            }
-        case DELETE_POKE_TEAM:
-            return{
-                ...state,
-                pokeTeam: state.poke.filter(poke => poke.id !== action.payload),
-                fetchingPoke: false,
-                addingPoke: false,
-                pokeShowing: false,
-                deletingPoke: true,
                 err: null
+            }
+        case FAILED_ID_POKE:
+            return{
+                ...state,
+                pokeData: [],
+                fetchingPoke: false,
+                err: "Unable to fetch Pokemon"
             }
         default:
             return state

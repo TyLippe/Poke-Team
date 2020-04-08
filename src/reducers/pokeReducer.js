@@ -55,7 +55,7 @@ export function pokeReducer(state = initialState, action) {
                 ...state,
                 pokeData: [],
                 fetchingPoke: false,
-                err: "Unable to fetch Pokemon"
+                err: "Unable to fetch Pokemon by Id"
             }
         default:
             return state

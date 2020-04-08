@@ -11,10 +11,15 @@ export const CREATE_USER = 'CREATE_USER'
 export const SUCCESS_CREATE = 'SUCCESS_CREATE'
 export const FAILED_CREATE = 'FAILED_CREATE'
 
-// Poke Data
+// Get Poke
 export const FETCH_POKE = 'FETCH_POKE';
 export const SUCCESS_POKE = 'SUCCESS_POKE';
 export const FAILED_POKE = 'FAILED_POKE';
+
+// Poke Data
+export const FETCH_POKE_DATA = 'FETCH_POKE_DATA';
+export const SUCCESS_POKE_DATA = 'SUCCESS_POKE_DATA';
+export const FAILED_POKE_DATA = 'FAILED_POKE_DATA';
 
 // Specific Poke Data
 export const FETCH_ID_POKE = 'FETCH_ID_POKE'

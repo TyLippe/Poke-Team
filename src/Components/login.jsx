@@ -31,18 +31,18 @@ function Login(props) {
             <h1>Log In</h1>
             <form onSubmit={handleSubmit}>
                 <input
-                type="text"
-                name="username"
-                placeholder="Username"
-                value={creds.username}
-                onChange={handleChange}
+                    type="text"
+                    name="username"
+                    placeholder="Username"
+                    value={creds.username}
+                    onChange={handleChange}
                 />
                 <input
-                type="password"
-                name="password"
-                placeholder="Password"
-                value={creds.password}
-                onChange={handleChange}
+                    type="password"
+                    name="password"
+                    placeholder="Password"
+                    value={creds.password}
+                    onChange={handleChange}
                 />
                 <input type="submit" value="Submit" />
             </form>

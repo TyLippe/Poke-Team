@@ -108,7 +108,6 @@ function PokeInfo(props) {
 
 const mapStateToProps = state => {
     return {
-        poke: state.capitalPoke,
         err: state.poke.err
     }
 }

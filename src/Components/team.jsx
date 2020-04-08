@@ -1,28 +1,19 @@
-import React, { useEffect, useState } from 'react'
-import { axiosWithAuth } from '../auth/axiosWithAuth'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { getTeam } from '../actions'
 
 
-function Team() {
+function Team(props) {
     const id = localStorage.userId
-    const [team, setTeam] = useState([])
 
     useEffect(() => {
-        axiosWithAuth()
-            .get(`http://localhost:5000/api/user/${id}/team`)
-            .then(res => {
-                setTeam(res.data)
-            })
-            .catch(err => {
-                console.log(err)
-            })
+        props.getTeam(id)
     }, [])
-
-    console.log(team)
 
     return(
         <div className='teamDiv'>
-            {team && team.map(pokemon => {
+            {props.team && props.team.map(pokemon => {
                 return(
                     <div>
                         <img src={pokemon.sprite} />
@@ -34,4 +25,13 @@ function Team() {
     )
 }
 
-export default Team;
+const mapStateToProps = state => {
+    return {
+        team: state.team.team[0]
+    }
+}
+
+export default connect(
+    mapStateToProps,
+    { getTeam }
+)(Team);

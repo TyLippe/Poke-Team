@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import '../styles/nav.scss'
 
 function NavBar() {
     const username = localStorage.username
@@ -11,9 +12,11 @@ function NavBar() {
 
     return(
         <div className='navDiv'>
-            <Link to={`/home`}>Poké-Team Builder</Link>
-            <Link to={`/team/${username}`}>{username}</Link>
-            {username && <button onClick={logout}>Log Out</button>}
+            <Link to={`/home`} className='logo'>Poké-Team Builder</Link>
+            <div className='user'>
+            {username && <Link to={`/team/${username}`} className='username'>{username}</Link>}
+            {username && <button onClick={logout} className='logout'>Log Out</button>}
+            </div>
         </div>
     )
 }

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { getPoke } from '../actions'
 import { connect } from 'react-redux'
 import PokeInfo from './pokeinfo'
-import '../styles.scss'
+import '../styles/styles.scss'
 
 
 function GetPokemon(props) {

@@ -3,7 +3,7 @@ import axios from 'axios'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { addPoke } from '../actions'
-import '../styles.scss'
+import '../styles/info.scss'
 
 function PokeInfo(props) {
     const [data, setData] = useState([])

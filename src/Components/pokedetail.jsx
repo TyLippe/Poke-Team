@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { getPokeById } from '../actions'
 import { useEffect } from 'react'
+import '../styles/detail.scss'
 
 function PokeDetail(props) {
     const id = props.match.params.id
@@ -14,9 +15,12 @@ function PokeDetail(props) {
     console.log(poke)
 
     return(
-        <div>
-            {poke && <h1>{poke.name && poke.name.charAt(0).toUpperCase() + poke.name.slice(1)}</h1>}
-            {poke && <img src={poke.sprites.front_default} />}
+        <div className='detailDiv'>
+            <div className='nameImg'>
+            {poke && <h1 className='name'>{poke.name && poke.name.charAt(0).toUpperCase() + poke.name.slice(1)}</h1>}
+            {poke && <img src={poke.sprites.front_default} className='sprite' />}
+            </div>
+            <div className='details'>
             <h2>Types:</h2>
             {poke && poke.types.map(types => {
                 return(
@@ -33,6 +37,7 @@ function PokeDetail(props) {
                     </div>
                 )
             })}
+            </div>
         </div>
     )
 }

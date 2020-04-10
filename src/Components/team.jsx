@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { getTeam } from '../actions'
-
+import '../styles/team.scss'
 
 function Team(props) {
     const id = localStorage.userId
@@ -15,9 +15,9 @@ function Team(props) {
         <div className='teamDiv'>
             {props.team && props.team.map(pokemon => {
                 return(
-                    <div>
+                    <div className='team'>
                         <img src={pokemon.sprite} />
-                        <Link to={`/poke/${pokemon.poke_num}`}>{pokemon.poke_name}</Link>
+                        <Link to={`/poke/${pokemon.poke_num}`} className='name'>{pokemon.poke_name}</Link>
                     </div>
                 )
             })}

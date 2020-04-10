@@ -1,19 +1,5 @@
 @import 'variables.scss';
 
-body {
-    margin: 0;
-    background-color: $dark;
-    font-family: 'Roboto', sans-serif;
-    color: $white;
-  }
-
-.navDiv {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-}
-
 .pokeDiv {
     display: flex;
     flex-wrap: wrap;
@@ -35,9 +21,8 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border: 2px white solid;
     border-radius: 10px;
-    background-color: rgba(255, 0, 0, 0.5);
+    background-color: $red;
     width: 240px;
     height: 240px;
     margin: 8px;
@@ -49,8 +34,11 @@ body {
     }
     img {
         width: 60%;
+        -webkit-filter: drop-shadow(5px 5px 5px #222);
+        filter: drop-shadow(5px 5px 5px #222);
     }
     .nameLink {
+        font-family: 'Press Start 2P', cursive;
         text-decoration: none;
         color: white;
         margin-bottom: 14px;

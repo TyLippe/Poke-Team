@@ -1,0 +1,36 @@
+@import 'variables.scss';
+
+.detailDiv {
+    display: flex;
+    margin-top: 100px;
+    justify-content: center;
+    .nameImg {
+        display: flex;
+        flex-direction: column;
+        width: 48%;
+        align-items: center;
+        justify-content: center;
+        border-radius: 10px;
+        background-color: $red;
+        margin: 8px;
+        h1 {
+            font-family: $font;
+            margin: 0;
+        }
+        img {
+            width: 70%;
+            -webkit-filter: drop-shadow(5px 5px 5px #222);
+            filter: drop-shadow(5px 5px 5px #222);
+        }
+    }
+    .details {
+        display: flex;
+        flex-direction: column;
+        width: 48%;
+        justify-content: center;
+        h2 {
+            font-family: $font;
+            font-size: 18px;
+        }
+    }
+}

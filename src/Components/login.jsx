@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { login } from '../actions'
+import '../styles/login.scss'
 
 function Login(props) {
     const [creds, setCreds] = useState({
@@ -26,10 +27,10 @@ function Login(props) {
     }
 
     return(
-        <div className='registerDiv'>
+        <div className='loginDiv'>
             {props.isLoggedIn && <Redirect to='/home' />}
-            <h1>Log In</h1>
-            <form onSubmit={handleSubmit}>
+            <h1>LOG IN</h1>
+            <form onSubmit={handleSubmit} className='loginForm'>
                 <input
                     type="text"
                     name="username"
@@ -44,8 +45,9 @@ function Login(props) {
                     value={creds.password}
                     onChange={handleChange}
                 />
-                <input type="submit" value="Submit" />
+                <input type="submit" value="Submit" className='submit' />
             </form>
+            <p>No account?</p>
             <button onClick={register}>Register</button>
         </div>
     )
